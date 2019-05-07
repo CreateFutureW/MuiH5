@@ -1,0 +1,44 @@
+* { padding: 0; margin: 0;  -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;}
+html { height: 100%; 
+-webkit-text-size-adjust: 100%;
+font-family: sans-serif;}
+html, body {
+  min-height: 100% !important;
+  height: 100%;
+  
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 21px;
+    color: #000;
+  
+    -webkit-overflow-scrolling: touch;
+}
+
+.home_qrcode_content{
+
+position: absolute; 
+left: 30%;
+right: 30%;
+z-index: 9999;
+	padding-top: 16%;width: 240px;text-align: center; margin: 0 auto;
+}
+.home_qrcode_content p{
+	border: dashed  #FFFFFF 3px;
+	   padding-top: 18px;
+		padding-bottom: 18px;
+
+
+
+}
+.audio{ 
+/*设置音乐显示位置*/
+	width:45px;
+	position:fixed;top:65px;left:94%;
+	z-index:100;
+	filter:alpha(opacity=30);  
+      -moz-opacity:0.3;  
+      -khtml-opacity: 0.3;  
+      opacity: 0.3;
+	}

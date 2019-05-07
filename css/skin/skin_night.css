@@ -1,0 +1,18 @@
+
+/*夜间皮肤*/
+#skin_night{
+	
+	  background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #000d4d 0%, #000105 100%);
+	  background-image: radial-gradient(ellipse farthest-corner at center top, #000d4d 0%, #000105 100%);
+	  cursor: move;
+}
+#canvas{
+	top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+	    position:absolute;
+	    z-index:-1;
+	    display:inline-block;vertical-align:baseline
+}
