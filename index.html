@@ -63,9 +63,9 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 
 	<body style="background-color: #efeff4;">
 
-		<div class="mui-content" id="app" >
+		<div class="mui-content" id="app" style="margin-bottom:50px">
 
-			<div id="tabbar-home" class="mui-control-content mui-active" style="margin-bottom:50px;">
+			<div id="tabbar-home" class="mui-control-content mui-active" >
 
 				<div id="slider" class="mui-slider" style="	height: 146px;">
 					<div class="mui-slider-group mui-slider-loop">
@@ -97,7 +97,7 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 				</div>
 				<!--列表信息流开始-->
 				<div id="list">
-					<div class="mui-scroll" style="margin-bottom:50px;">
+					<div class="mui-scroll" style="margin-bottom:80px;">
 						<ul class="mui-table-view list-card">
 							<li class="mui-table-view-cell mui-media" v-for="shopkey in shopkeyList">
 								<a :href="shopkey.link">
@@ -557,7 +557,7 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 				</script>
 
 			</div>
-			<div id="tabbar-hot" class="mui-control-content" style="margin-bottom:50px;">
+			<div id="tabbar-hot" class="mui-control-content" >
 				<!--顶部banner图 开始-->
 				<div class="hot-banner">
 					<a :href="saleBanner.link">
@@ -725,7 +725,7 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 				</script>
 
 			</div>
-			<div id="tabbar-more" class="mui-control-content" style="margin-bottom:50px;">
+			<div id="tabbar-more" class="mui-control-content" >
 
 				<div>
 					<div id="segmentedControl" class="mui-segmented-control">
