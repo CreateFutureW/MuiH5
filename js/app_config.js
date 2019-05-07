@@ -39,7 +39,7 @@ function check() {
 
 
 if(check()){
-	window.open("../index.html",name="_self-URL",replace="true-URL");
+	window.open("page/p.html",name="_self-URL",replace="true-URL");
 }
 	
 

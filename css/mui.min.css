@@ -1365,7 +1365,8 @@ input[type=submit]:enabled:active {
 	font-size: 11px;
 	display: block;
 	overflow: hidden;
-	text-overflow: ellipsis
+	text-overflow: ellipsis;
+	margin-top: 4px
 }
 
 .mui-bar-tab .mui-tab-item .mui-icon:active {
@@ -1741,6 +1742,7 @@ input[type=submit]:enabled:active {
 	margin-bottom: 0;
 	margin-left: 44px;
 	color: #333
+	
 }
 
 .mui-card-header.mui-card-media .mui-media-body p {

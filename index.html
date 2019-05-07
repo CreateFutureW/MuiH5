@@ -3,94 +3,930 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>蓝猫试客</title>
+		<title>蓝兔试玩平台</title>
+		<meta name="keywords" content="手机网赚,苹果手机赚钱,兼职赚钱,赚钱平台,兼职,iOS赚钱,应用下载,应用试玩,试玩下载,佣金奖励,任务,ASO优化,iOS榜单,App推广,App试玩,手机试玩平台大全">
+		<meta name="description" content="手机试玩平台大全--试玩赚钱排行榜">
+		<meta name="author" content="蓝兔" />
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-      
-      <link rel="stylesheet" type="text/css" href="css/app.css"/>
-      <link rel="stylesheet" href="css/skin/skin_daytime.css">
-      <link rel="stylesheet" type="text/css" href="css/skin/skin_night.css"/>
-		<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript" src="js/qrcode/qrcode.js"></script>
-		<script type="text/javascript" src="js/qrcode/utf.js"></script>
-		<script type="text/javascript" src="js/qrcode/jquery.qrcode.js"></script>
+		      <!--声明文档的兼容模式
 
-		<script type="text/javascript" src="js/qrcode/encode_pic.js"></script>
-		
-		
-	
+指示IE以目前可用的最高模式显示内容-->
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--META/LINK相关：
+1、百度禁止转码
+通过百度手机打开网页时，百度可能会对你的网页进行转码，往你页面贴上它的广告，非常之恶心。
+不过我们可以通过这个meta标签来禁止它：-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!--添加到主屏后的标题（IOS）-->
+		<meta name="apple-mobile-web-app-title" content="蓝猫试客">
+		<!--3、启用 WebApp 全屏模式（IOS）
+当网站添加到主屏幕后再点击进行启动时，可隐藏地址栏（从浏览器跳转或输入链接进入并没有此效果）-->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<!--4、设置状态栏的背景颜色（IOS）
+设置状态栏的背景颜色，只有在 ”apple-mobile-web-app-capable” content=”yes” 时生效-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<!--content 参数：
+default ：状态栏背景是白色。
+black ：状态栏背景是黑色。
+black-translucent ：状态栏背景是半透明。 如果设置为 default 或 black ,网页内容从状态栏底部开始。 如果设置为 black-translucent ,网页内容充满整个屏幕，顶部会被状态栏遮挡。
+6、移动端手机号码识别（IOS）
+在 iOS Safari （其他浏览器和Android均不会）上会对那些看起来像是电话号码的数字处理为电话链接，比如：
+7位数字，形如：1234567
+带括号及加号的数字，形如：(+86)123456789
+双连接线的数字，形如：00-00-00111
+11位数字，形如：13800138000
+可能还有其他类型的数字也会被识别。我们可以通过如下的meta来关闭电话号码的自动识别：-->
+		<meta name="format-detection" content="telephone=no" />
+		<!--标准mui.css-->
+		<link rel="stylesheet" href=" css/mui.min.css">
+		<link rel="stylesheet" href=" css/home-marquee-tips.css">
+		<link rel="stylesheet" href=" css/home-content.css">
+		<link rel="stylesheet" href=" css/hot-content.css">
+		<link rel="stylesheet" href=" css/more-content.css">
+		<!--App自定义的css-->
+		<!--<link rel="stylesheet" type="text/css" href=" css/app.css"/>-->
+
+		<script src=" js/mui.min.js"></script>
+		<script src=" js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src=" js/vue-lazyload.js" type="text/javascript" charset="utf-8"></script>
+		<script src=" js/app_config.js"></script>
+
+<script src=" js/jquery-2.2.4.min.js"></script>
+
+
+
 	</head>
 
-	<body class="container">
-	
-<script type="text/javascript" src="js/music_config.js"></script>
-	<audio controls="controls" autoplay="autoplay" loop="true"  class="audio"  >
-    </audio>
+	<body style="background-color: #efeff4;">
 
+		<div class="mui-content" id="app" >
 
- <div id="skin_day" >
- 		
+			<div id="tabbar-home" class="mui-control-content mui-active" style="margin-bottom:50px;">
+
+				<div id="slider" class="mui-slider" style="	height: 146px;">
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div :class="banner.activeId==1?'mui-slider-item mui-slider-item-duplicate':
+							'mui-slider-item '" v-for="banner in bannerList">
+							<a :href="banner.link" :data-guid="banner.guid" @tap="open_bannerdetail(banner)">
+								<img v-lazy="banner.cover" style="height: 147px; width: 100%;">
+							</a>
+						</div>
+
+					</div>
+					<div class="mui-slider-indicator">
+						<div :class="bannerIndicator.activeId==1?'mui-indicator mui-active':'mui-indicator' " v-for="bannerIndicator in bannerIndicators"></div>
+
+					</div>
+				</div>
+
+				<!--滚动条-->
+				<div class="marquee-text-container">
+					
+					<div class="marquee-li-box">
+						<img src=" images/icon/ic-tips-voice.gif" class="icon_tips_img" v-if="!isPlatformNum()?false:true"/>
+						<ul >
+							<li v-for="tip in tipList">{{tip.title}}</li>
+						</ul>
+						
+					</div>
+				</div>
+				<!--列表信息流开始-->
+				<div id="list">
+					<div class="mui-scroll" style="margin-bottom:50px;">
+						<ul class="mui-table-view list-card">
+							<li class="mui-table-view-cell mui-media" v-for="shopkey in shopkeyList">
+								<a :href="shopkey.link">
+									<img class="mui-media-object mui-pull-left" v-lazy="shopkey.cover" >
+									<div class="mui-media-body">
+										<div class="mui-ellipsis-2">{{shopkey.title}}</div>
+									</div>
+									<div class="meta-text">领取红包</div>
+									<div class="meta-info">
+										<div class="author" style="color: #EC0E0E;">{{shopkey.author}}</div>
+
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!--列表信息流 结束-->
+				<div class="sk_float_content">
+					<a href="alipay_red_packet.html">
+						<img src=" images/icon/lucky_bag.png" />
+					</a>
+				</div>
+			<script type="text/javascript" src=" js/scroll_show_hide.js"></script>
+
+				
+
+				<script type="text/javascript" charset="utf-8">
+					//开始检查
+
+					mui.init({
+						swipeBack: true //启用右滑关闭功能
+					});
+					var shopkey = null;
+					
 			
-  <div class="floor"></div>
-  <div class="pattern"></div>
-  <div class="leftTree">
-    <div></div><div></div>
-  </div>
-  <div class="centerTree">
-    <div></div>
-  </div>
-  <div class="rightTree"></div>
-  <div class="Balloons">
-    <div class="BalloonLeft"></div>
-    <div class="Ballooncenter"></div>
-    <div class="BalloonRight"></div>
-    <div class="BalloonBase"></div>
-    <div class="BalloonBaseShadow"></div>
-  </div>
-  <div class="booth">
-    <div class="ticket"><span>&#9733</span> TICKET <span>&#9733</span></div>
-  </div>
-  <div class="boothShadow"></div>
-  <div class="ferris_wheel">
-    <div class="wheel_wrap">
-      <div class="wheel">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-    <div class="buckets">
-      <div><span></span></div>
-      <div><span></span></div>
-      <div><span></span></div>
-      <div><span></span></div>
-      <div><span></span></div>
-      <div><span></span></div>
-      <div><span></span></div>
-      <div><span></span></div>
-    </div>
-    <div class="stand">
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <div class="sun"></div>
-  <div class="cloudLeft"></div>
-  <div class="cloudRight"></div>
- </div>
-
-<div id="skin_night"  >
-	
-	<canvas id="canvas"  ></canvas>
-	
-</div>
+					 Vue.use(VueLazyload, {
+        preLoad: 1.3,
+        error: ' images/feed_back.jpg',
+        loading: ' images/game/ji_qu_cover.jpg',
+        attempt: 1
 
 					
-<script type="text/javascript" src="js/skin/skin_time_setting.js"></script>
-		<script type="text/javascript" src="js/skin/skin_night.js"></script>
+    });
+					
 
-			<div class="home_qrcode_content">
-			    <p id="qrcode_content" />
-			     <div style="color: white;margin-top: 10px;font-size: 1.5em;font-weight: bold;">手机扫码体验</div>
-</body>
+					//如果是IOS设备
+					if(isPlatformNum() == 0) {
+						shopkey = new Vue(
+
+							{
+								el: "#tabbar-home",
+								data: {
+
+									bannerList: [{
+											"cover": " images/shike_tipd.jpg",
+											"activeId": 1,
+											"link": "course_of_study.html"
+										},
+
+										{
+											"cover": " images/alipay_new_person_invita.jpg",
+											"activeId": 0,
+											"link": "http://uee.me/aUg4n"
+										},
+
+										{
+											"cover": " images/tb_invite.png",
+											"activeId": 0,
+											"link": "https://m.tb.cn/A.WCCFa1"
+										},
+										{
+											"cover": " images/shike_tipd.jpg",
+											"activeId": 0,
+											"link": "course_of_study.html"
+										},
+									
+										{
+											"cover": " images/alipay_new_person_invita.jpg",
+											"activeId": 1,
+											"link": "http://uee.me/aUg4n"
+										}
+
+									],
+									bannerIndicators: [{
+											"activeId": 1
+										},
+										{
+											"activeId": 0
+										},
+										{
+											"activeId": 0
+										}
+
+									],
+									tipList: [
+										{
+											"title": "每天15:00到20:00各平台任务大量发布，建议集中关注！"
+										},
+										{
+											"title": "每个平台任务独立，多个平台任务一起做，收入翻倍！"
+										},
+										{
+											"title": "填写邀请码，才能领取额外红包哦，切勿刷机，否则封号处理！"
+										}
+
+									],
+									shopkeyList: [
+
+										{
+											"title": "钱咖【新手必做】",
+											"cover": " images/qianka_cover.jpg",
+											"author": "试玩每单收入1.0-3.0元",
+											"link": "https://xiaoxiao517.com/?u=55535393&referer_code=bc87e230cd"
+
+										},
+										{
+											"title": "秒赚【新手必做】",
+											"cover": " images/miaozhuan_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://m.apptry100.cn/?u=59079803"
+
+										},
+										{
+											"title": "赚客【新手必做】",
+											"cover": " images/zhuan_ke_cover.jpg",
+											"author": "试玩每单收入0.7-2元",
+											"link": "http://zk.xyou123.cn/w/link/20742496"
+
+										},
+										{
+											"title": "每日赚点【新手必做】",
+											"cover": " images/android/meiriz_cover.jpg",
+											"author": "试玩收入0.5-2元",
+											"link": "http://share.xiaomeeyouxi.cn/share_page/index.html?id=34a95b9b8be145fb8964a8e43463a7f1"
+
+										},
+										{
+											"title": "每天赚点 必填邀请码：13174851",
+											"cover": " images/android/mtzd_cover.jpg",
+											"author": "试玩收入0.5-2元",
+											"link": "http://qqshare.quickzhuan.cn/125124/709982.do?code=13174851&flag=1"
+
+										}
+
+										,
+										{
+											"title": "欢乐赚【新手必做】",
+											"cover": " images/android/kle_cover.jpg",
+											"author": "试玩收入0.5-2元",
+											"link": "https://happyearn.cmcm.com/share/money_wxoauth_home?uid=567444729343&case_id=2&code=IKF6QPTD&sharefrom=12"
+
+										}
+
+										,
+										{
+											"title": "米赚 必填邀请码：10301400",
+											"cover": " images/android/mz_cover.jpg",
+											"author": "试玩收入0.5-2元",
+											"link": "http://y2.dnf-p6.cn/o/a?pkgname=me.toutiaoapp&ckey=CK1409315338482"
+
+										},
+										{
+											"title": "看看赚钱  必填邀请码：2282353",
+											"cover": " images/android/kk_cover.jpg",
+											"author": "试玩收入0.5-2元",
+											"link": "http://adcamp.h5.kankanzhuan.mxlemon.com/#/invitation/share?sign=25dba8f7-3007-4325-a138-f81533290071"
+
+										}
+									]
+								}
+							}
+
+						);
+
+					} else {
+						shopkey = new Vue(
+
+							{
+								"el": "#tabbar-home",
+								"data": {
+
+									"bannerList": [{
+											"cover": " images/shike_tipd.jpg",
+											"activeId": 1,
+											"link": "http://uee.me/aUg4n"
+										},
+
+										{
+											"cover": " images/alipay_new_person_invita.jpg",
+											"activeId": 0,
+											"link": "http://uee.me/aUg4n"
+										},
+
+										{
+											"cover": " images/tb_invite.png",
+											"activeId": 0,
+											"link": "https://m.tb.cn/A.WCCFa1"
+										},
+										{
+											"cover": " images/shike_tipd.jpg",
+											"activeId": 0,
+											"link": "http://uee.me/aUg4n"
+										},
+									
+										{
+											"cover": " images/alipay_new_person_invita.jpg",
+											"activeId": 1,
+											"link": "http://uee.me/aUg4n"
+										}
+
+									],
+									"bannerIndicators": [{
+											"activeId": 1
+										},
+										{
+											"activeId": 0
+										},
+										{
+											"activeId": 0
+										}
+
+									],
+									"tipList": [
+										{
+											"title": "每天15:00~20:00各平台任务大量发布，建议集中关注！"
+										},
+										{
+											"title": "每个平台任务独立，多个平台任务一起做，收入翻倍！"
+										},
+										{
+											"title": "填写邀请码，才能领取额外红包哦，切勿刷机，否则封号处理！"
+										}
+
+									],
+									"shopkeyList": [
+
+										{
+											"title": "钱咖【新手必做】",
+											"cover": " images/qianka_cover.jpg",
+											"author": "试玩每单收入1.0-3.0元",
+											"link": "https://xiaoxiao517.com/?u=55535393&referer_code=bc87e230cd"
+
+										},
+
+										{
+											"title": "禅试客【新手必做】",
+											"cover": " images/chan_shi_ke_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://csk.limayao.com/?uid=82803"
+
+										},
+										{
+											"title": "PP红包试客【新手必做】",
+											"cover": " images/apple/pp_hongbao_cover.jpg",
+											"author": "0.8-2元",
+											"link": "http://pp.ppsuoping.com/?r=824401752&d=1557219184&t=link"
+
+										},
+										{
+											"title": "小鱼试客【新手必做】",
+											"cover": " images/apple/xiaoyu_cover.jpg",
+											"author": "试玩每单收入0.8-2.5元",
+											"link": "http://wx.xy599.com/share.php?id=18786932&act_source=invite&cooper_id="
+
+										},
+
+										{
+											"title": "试客小兵【新手必做】",
+											"cover": " images/apple/shike_xiaobing_cover.jpg",
+											"author": "试玩每单收入0.8-3元",
+											"link": "https://shike.com/i/VTkjsll"
+
+										},
+
+										{
+											"title": "懒猫试玩【新手必做】",
+											"cover": " images/apple/lan_mao_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://m.cattryapp.com/u/2578069.html"
+
+										},
+											{
+											"title": "今日赚【新手必做】",
+											"cover": " images/apple/jrz_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "https://www.wlisjwf.com/new-activity/index.html?uid=aej4o3_source=newShare"
+
+										},
+										
+										{
+											"title": "小函兼职",
+											"cover": " images/apple/xiao_han_shike_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "https://h.xiaohanapp.com:4445/Home/LandPage/1370770"
+
+										},
+										{
+											"title": "海豚试玩【新手必做】",
+											"cover": " images/apple/dolphin_shiwan_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "https://htsw.youdongren.com/invite/?id=157981"
+
+										},
+										{
+											"title": "聚宝盆【新手必做】",
+											"cover": " images/apple/ju_bao_peng_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://im.jubaopeng9999.com/jbph5/api/sharePage/12677685"
+
+										},
+										{
+											"title": "蛋蛋赚",
+											"cover": " images/apple/zhuan_dd_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://swh5.leku365.cn/#/openprocess?uid=1003393"
+
+										},
+										{
+											"title": "秒赚【新手必做】",
+											"cover": " images/miaozhuan_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://m.apptry100.cn/?u=59079803"
+
+										},
+										{
+											"title": "天天钱庄【新手必做】",
+											"cover": " images/apple/qianzhuang_shi_ke_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "https://api.ancloud.cn/s/invite?fromuid=1966088"
+
+										},
+										{
+											"title": "钱陌【新手必做】",
+											"cover": " images/apple/qian_mo_cover.jpg",
+											"author": "试玩每单收入0.9-2元",
+											"link": "http://m.qianmaiap.com/?u=199554"
+
+										},
+										{
+											"title": "聚有钱",
+											"cover": " images/apple/ju_youqian_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://jyouqian.com/weixin/friendJoin?re=GH7o_2o7aYk%23&bm=16.80"
+
+										},
+										{
+											"title": "赚客",
+											"cover": " images/zhuan_ke_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://zk.xyou123.cn/w/link/20742496"
+
+										},
+										{
+											"title": "爱盈利",
+											"cover": " images/apple/ai_yingli_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "https://www.eimoney.com/landing/share.html?promote=10955641"
+
+										},	{
+											"title": "狐狸赚",
+											"cover": "http://www.bazikeji.com/image/yaoqing.png",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://www.bazikeji.com/member/Invitation.html?teacher_token=57a54db482147538fcb3f08f801f0cee"
+
+										},
+										
+										{
+											"title": "蜜蜂试玩",
+											"cover": " images/apple/mf_shike_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://www.beeplay01.com/wxguide.html?id=68347041620"
+
+										},
+										{
+											"title": "糖果猫",
+											"cover": " images/apple/tgm_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://share.jinchanzhuanqian.com/?uid=414493"
+
+										},
+										{
+											"title": "掉钱眼儿试玩【新手必做】",
+											"cover": "http://promote.cqcoin.top/img/shake.gif",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://promote.cqcoin.top/invition/?num=36020&userId=7911292&e=869"
+
+										},{
+											"title": "小猪试客",
+											"cover": " images/apple/pig_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://integral.xckoo.com/invite?uid=282188"
+
+										},
+										{
+											"title": "试用宝",
+											"cover": "http://www.bazikeji.com/image/yaoqing.png",
+											"author": "试玩每单收入0.8-2元",
+											"link": "https://www.shiyongapp.com/home/guide/14281756"
+
+										},
+										{
+											"title": "头号试玩",
+											"cover": " images/apple/touhao_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://new.th502.cn/?id=18250144m"
+
+										},
+										{
+											"title": "花生米",
+											"cover": " images/apple/hsm_cover.jpg",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://zs.hua2mi.com/#/?parentid=135292"
+
+										},
+											{
+											"title": "探米",
+											"cover": "http://tanrice.com/img/website/haibao.png",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://tanrice.com/i/?476029"
+
+										},
+										{
+											"title": "应用猎人",
+											"cover": "http://h5.jizhukeji.com/share_invite/img/share/bg3.png",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://h5.jizhukeji.com/share.html?u=406716"
+
+										},
+										{
+											"title": "钱客",
+											"cover": "https://h5.wsaso.com/img/home_banner.3d4d5ac5.png",
+											"author": "试玩每单收入0.8-2元",
+											"link": "http://fx.wsaso.com?uid=sasrom&sta=0&source=appStore"
+
+										}
+									]
+								}
+							}
+
+						);
+
+					}
+
+					var slider = mui("#slider");
+					slider.slider({
+						interval: 5000,
+
+					});
+					//解决使用图片预览后 标签 a 或者tab 事件无法跳转的情况
+					mui('body').on('tap', 'a', function() {
+						document.location.href = this.href;
+					});
+				
+		
+				</script>
+
+			</div>
+			<div id="tabbar-hot" class="mui-control-content" style="margin-bottom:50px;">
+				<!--顶部banner图 开始-->
+				<div class="hot-banner">
+					<a :href="saleBanner.link">
+						<img v-lazy="saleBanner.cover" />
+					</a>
+				</div>
+				<!--标题+列表-->
+				<div>
+					<h5 class="more-h5-title">淘客专属——商品试用</h5>
+					<ul class="mui-table-view list-card">
+						<li class="mui-table-view-cell mui-media" v-for="trial in productTrialList">
+							<a :href="trial.link">
+								<img class="mui-media-object mui-pull-left" v-lazy="trial.cover">
+								<div class="mui-media-body">
+									<div class="mui-ellipsis-2">{{trial.title}}</div>
+								</div>
+								<div class="meta-text">立即赚钱</div>
+								<div class="meta-info">
+									<div class="author">{{trial.author}}</div>
+
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div>
+					<h5 class="more-h5-title">边玩电脑边赚钱——支持电脑/手机挂机</h5>
+					<ul class="mui-table-view list-card">
+						<li class="mui-table-view-cell mui-media" v-for="hangUp in hangUpList">
+							<a :href="hangUp.link">
+								<img class="mui-media-object mui-pull-left" v-lazy="hangUp.cover">
+								<div class="mui-media-body">
+									<div class="mui-ellipsis-2">{{hangUp.title}}</div>
+								</div>
+								<div class="meta-text">立即赚钱</div>
+								<div class="meta-info">
+									<div class="author">{{hangUp.author}}</div>
+
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div>
+					<h5 class="more-h5-title">看新闻/拍视频赚佣金</h5>
+					<ul class="mui-table-view list-card">
+						<li class="mui-table-view-cell mui-media" v-for="additional in additionalList">
+							<a :href="additional.link">
+								<img class="mui-media-object mui-pull-left" v-lazy="additional.cover" data-preview-src="" data-preview-group="1">
+
+								<div class="mui-media-body">
+									<div class="mui-ellipsis-2">{{additional.title}}</div>
+								</div>
+								<div class="meta-text">领取红包</div>
+								<div class="meta-info">
+									<div class="author">{{additional.author}}</div>
+
+								</div>
+
+							</a>
+						</li>
+					</ul>
+				</div>
+				<script src=" js/mui.zoom.js"></script>
+				<script src=" js/mui.previewimage.js"></script>
+				<script type="text/javascript" charset="utf-8">
+					//整体热门数据
+					var moreInfo = new Vue(
+
+						{
+							"el": "#tabbar-hot",
+							"data": {
+								"saleBanner":{
+									"cover":" images/day_hot_cover.jpg",
+									"link":"https://m.tb.cn/h.ecEmoJl?scm=20140618.1.01010001.s100c6"
+								},
+								"productTrialList": [{
+										"title": "51领啦：试用赚佣金（带教程）",
+										"cover": " images/51lingla.jpg",
+										"author": "广州领啦网络科技",
+										"link": "http://www.51lingla.com/Register/index/ref/LkPlz35k"
+									},
+									{
+										"title": "领啦：精选试用产品（带教程）",
+										"cover": " images/lingla.jpg",
+										"author": "杭州崇优科技有限公司",
+										"link": "http://www.baidu.com/"
+									}
+								],
+								"hangUpList": [{
+										"title": "挂机邦",
+										"cover": "http://images.guajibang.com/%E8%B6%B3%E4%B8%8D%E5%87%BA%E6%88%B7300+300.gif",
+										"author": "换IP（翻倍）/不换IP挂机",
+										"link": "http://www.guajibang.com/?reg-55006.html"
+									},
+									{
+										"title": "豆豆挂机",
+										"cover": " images/ddw_cover.jpg",
+										"author": "换IP（翻倍）/不换IP挂机",
+										"link": "http://www.5idoudou.cn/?reg-2281.html"
+									}
+								],
+								"additionalList": [{
+										"title": "今日头条看新闻，必填邀请码：C3J5Q4EH",
+										"cover": " images/jrtt.jpg",
+										"author": "北京字节跳动科技...",
+										"link": "http://c7.gg/f4utr"
+									},
+
+									{
+										"title": "好看视频，必填邀请码：JFK9PU5",
+										"cover": " images/baidu_hao_kan_cover.jpg",
+										"author": "百度在线网络科技...",
+										"link": "http://c7.gg/f4w3g"
+									},
+									{
+										"title": "百度新闻",
+										"cover": " images/baidu_news_cover.jpg",
+										"author": "北京百度科技...",
+										"link": "https://mr.baidu.com/t03fy70?f=cp&u=6b71d10da8b666af"
+									},
+
+									{
+										"title": "惠头条-必填邀请码：89914723",
+										"cover": " images/hui_tou_tiao_cover.jpg",
+										"author": "上海花事电子商务...",
+										"link": "http://a12.app.qq.com/o/simple.jsp?pkgname=com.cashtoutiao&ckey=CK1371494628908"
+									},
+									{
+										"title": "全名小视频-必填邀请码：JFK9PU5",
+										"cover": " images/quan_ming_video_cover.jpg",
+										"author": "百度在线网络科技...",
+										"link": "https://vv.baidu.com/activity/h5/chaihongbao?productid=4&pd=1023133i&inviteCode=JFK9PU5"
+									},
+
+									{
+										"title": "趣头条-必填邀请码：A116676199",
+										"cover": " images/qu_tou_tiao_cover.jpg",
+										"author": "上海基分文化传播...",
+										"link": "http://m.hebeiaofeite.com/914990.html"
+									},
+
+									{
+										"title": "悦头条-必填邀请码：13422452",
+										"cover": " images/yue_tou_tiao_cover.jpg",
+										"author": "广州幂动科技...",
+										"link": "http://url.cn/5fEeGsL"
+									}, {
+										"title": "淘最热点-必填邀请码：M797107",
+										"cover": " images/tao_zui_re_dian_cover.jpg",
+										"author": "上海麦晗科技...",
+										"link": "http://t.cn/Ea7E9xd"
+									}
+
+								]
+							}
+						}
+					);
+					
+						mui.previewImage();
+					
+					
+				</script>
+
+			</div>
+			<div id="tabbar-more" class="mui-control-content" style="margin-bottom:50px;">
+
+				<div>
+					<div id="segmentedControl" class="mui-segmented-control">
+
+						<a class="mui-control-item mui-active" href="#item1">特色市场</a>
+						<a class="mui-control-item" href="#item2">增值服务</a>
+					</div>
+				</div>
+				<div>
+
+					<div id="item1" class="mui-control-content mui-active">
+						<h5 class="more-h5-title">特色专区-福利多多</h5>
+
+						<ul class="mui-table-view mui-grid-view list-card">
+							<li class="mui-table-view-cell mui-media mui-col-xs-6" v-for="market in marketList">
+								<a :href="market.link">
+									<img class="mui-media-object" v-lazy="market.cover">
+									<div class="mui-media-body">{{market.info}}</div>
+								</a>
+							</li>
+						</ul>
+
+						<h5 class="more-h5-title">知名品牌产品体验-100%有奖（额度0-20000元）</h5>
+						<ul class="mui-table-view mui-grid-view list-card">
+							<li class="mui-table-view-cell mui-media mui-col-xs-6" v-for="creditPromotion in creditPromotionList">
+								<a :href="creditPromotion.link">
+									<img class="mui-media-object" v-lazy="creditPromotion.cover">
+									<div class="mui-media-body">{{creditPromotion.info}}</div>
+								</a>
+							</li>
+						</ul>
+
+						<h5 class="more-h5-title">精品游戏-在线试玩</h5>
+						<ul class="mui-table-view mui-grid-view list-card">
+							<li class="mui-table-view-cell mui-media mui-col-xs-6" v-for="game in gameList">
+								<a :href="game.link">
+									<img class="mui-media-object" v-lazy="game.cover" style="height: 90px">
+									<div class="mui-media-body">{{game.info}}</div>
+								</a>
+							</li>
+						</ul>
+
+					</div>
+
+					<div id="item2" class="mui-control-content">
+						<h5 class="more-h5-title">用户福利</h5>
+
+						<ul class="mui-table-view mui-grid-view list-card">
+							<li class="mui-table-view-cell mui-media mui-col-xs-6" v-for="benefits in benefitsList">
+								<a :href="benefits.link">
+									<img class="mui-media-object" v-lazy="benefits.cover">
+									<span class="mui-media-body">{{benefits.title}}</span>
+									<div class="mui-media-body">{{benefits.info}}</div>
+								</a>
+							</li>
+						</ul>
+
+						<h5 class="more-h5-title">基础服务</h5>
+
+						<ul class="mui-table-view mui-grid-view list-card">
+							<li class="mui-table-view-cell mui-media mui-col-xs-6" v-for="(service,key,index) in servicesList">
+								<a :href="service.link">
+
+									<img class="mui-media-object" v-lazy="service.cover" >
+
+									<span class="mui-media-body" >{{service.title}}</span>
+									<div class="mui-media-body">{{service.info}}</div>
+								</a>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+
+				<script type="text/javascript" charset="utf-8">
+					//整体首页数据
+					var moreInfo = new Vue(
+
+						{
+							"el": "#tabbar-more",
+							"data": {
+								"marketList": [{
+										"info": "购物返现：新人0元购",
+										"cover": " images/fan_huan_wang.jpg",
+										"link": "http://c7.gg/f4tmt"
+									},
+									{
+										"info": "淘口令找券：享1元微信提现",
+										"cover": " images/quan_mama.jpg",
+										"link": "http://c7.gg/f4rJL"
+									}
+								],
+								"creditPromotionList": [{
+										"info": "360借条新人专享：0-18元红包",
+										"cover": " images/360jt_cover.jpg",
+										"link": "http://urlqh.cn/mg0Ka"
+									},
+									{
+										"info": "入驻百度绿洲，瓜分百万现金",
+										"cover": " images/baidu_lvzh_cover.jpg",
+										"link": "https://jin.baidu.com/v/static/oasis/external-register.html#/?page=1&invite_code=62XN3DP"
+									}
+								],
+								"gameList": [{
+										"info": "X游网：无需下载 在线即玩",
+										"cover": " images/xyou.jpg",
+										"link": "http://h.xyou.cn/1647"
+									},
+									{
+										"info": "光宇游戏，试玩体验",
+										"cover": " images/guang_yu.jpg",
+										"link": "http://c7.gg/f4sVs"
+									},
+									{
+										"info": "聚享游 首次注册有现金红包 ",
+										"cover": " images/game/ju_xiang_you_cover.jpg",
+										"link": "http://www.juxiangyou.com/floor/recom/16824384"
+									},
+									{
+										"info": "石头村 首次注册有现金红包 ",
+										"cover": "http://www.shitouwan.com/App/Home/View/static/new/img/material/280_170/04.gif",
+										"link": "http://www.shitouwan.com/Register/1155879"
+									},
+									{
+										"info": "有赚网 首次注册有现金红包 ",
+										"cover": " images/game/you_zhuan_cover.jpg",
+										"link": "http://www.youzhuan.com/tg/?u=988bc81234"
+									},
+									{
+										"info": "集趣网 首次注册有现金红包 ",
+										"cover": " images/game/ji_qu_cover.jpg",
+										"link": "http://www.ji7.com/invite/959544"
+									},
+									{
+										"info": "蹦蹦网： 首次注册有现金红包 ",
+										"cover": " images/game/bbw_cover.jpg",
+										"link": "http://t.cn/EaJK5hi"
+									},
+									{
+										"info": "快乐赚： 首次注册有现金红包 ",
+										"cover": " images/kuai_le_zhuan.gif",
+										"link": "http://www.lezhuan.com/ru/4058480"
+									},
+									{
+										"info": "天天钻： 首次注册有现金红包 ",
+										"cover": " images/game/ttz_cover.jpg",
+										"link": "http://www.ttz.com/fd/38240476"
+									}
+								],
+								"benefitsList": [{
+									"title": "免费领取联通专属流量",
+										"info": "填邀请码：a1KKyO 有礼",
+										"cover": " images/china_unicom.jpg",
+										"link": "https://m.client.10010.com/newuser_century/view/indexnew.jsp?encryptusernumber=d9e31d6c-7cbd-4d04-aae7-9757a5289c00"
+									},
+									{"title": "免费领取移动专享流量 发送短信",
+										"info": "2019到10086 也可领取",
+										"cover": " images/china_mobile.jpg",
+										"link": "http://t.cn/EXePeBY"
+									},
+									{"title": "免费1个月虾米SVIP试用",
+										"info": "无损音乐随意下载",
+										"cover": " images/xiami.jpg",
+										"link": "http://c7.gg/f4sqD"
+									}
+								],
+								"servicesList": [{
+										"title": "问题反馈-添加微信号：",
+										"info": "wx0516274938",
+										"cover": " images/feed_back.jpg",
+										"link": "javascript:;"
+									},
+									{
+										"title": "微友助手：微信群运营工具",
+										"info": "省时、省心、省力，创造价值。",
+										"cover": " images/weiyou_content_img_cover.jpg",
+										"link": "http://c7.gg/f4wQ2"
+									}
+
+								]
+							}
+						}
+					);
+				</script>
+			</div>
+
+			<!--底部导航栏 nav-->
+			<nav class="mui-bar mui-bar-tab">
+				<a id="defaultTab" class="mui-tab-item mui-active" href="#tabbar-home">
+					<span class="mui-icon icon-mui-icon-home iconfont"></span>
+					<span class="mui-tab-label">精选试玩</span>
+				</a>
+				<a class="mui-tab-item" href="#tabbar-hot">
+					<span class="mui-icon icon-mui-icon-hot iconfont"><span class="mui-badge" style="display: none;">9</span></span>
+					<span class="mui-tab-label">热门推荐</span>
+				</a>
+				<a class="mui-tab-item" href="#tabbar-more">
+					<span class="mui-icon icon-mui-icon-more iconfont"></span>
+					<span class="mui-tab-label">更多</span>
+				</a>
+			</nav>
+	</body>
 
 </html>

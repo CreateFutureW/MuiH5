@@ -2,7 +2,7 @@
    $(document).ready(function(){
       
       $(window).scroll(function () {
-            if ($(window).scrollTop() > 95) {
+            if ($(window).scrollTop() > 100) {
               
                  $(".sk_float_content").hide();
             }
