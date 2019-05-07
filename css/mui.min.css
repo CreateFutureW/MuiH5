@@ -603,6 +603,7 @@ p {
 	position: absolute;
 	z-index: 1;
 	width: 100%
+	
 }
 
 .mui-scrollbar {
@@ -3771,13 +3772,13 @@ body>.mui-progressbar {
 	margin: 1px 6px;
 	cursor: pointer;
 	border-radius: 50%;
-	background: #aaa;
+	background: rgba(249, 242, 242, 0.15);
 	-webkit-box-shadow: 0 0 1px 1px rgba(130, 130, 130, .7);
 	box-shadow: 0 0 1px 1px rgba(130, 130, 130, .7)
 }
 
 .mui-slider-indicator .mui-active.mui-indicator {
-	background: #fff
+	background: rgba(239, 10, 10, 0.9)
 }
 
 .mui-slider-indicator .mui-icon {

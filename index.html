@@ -6,13 +6,15 @@
 		<title>蓝兔试玩平台</title>
 		<meta name="keywords" content="手机网赚,苹果手机赚钱,兼职赚钱,赚钱平台,兼职,iOS赚钱,应用下载,应用试玩,试玩下载,佣金奖励,任务,ASO优化,iOS榜单,App推广,App试玩,手机试玩平台大全">
 		<meta name="description" content="手机试玩平台大全--试玩赚钱排行榜">
-		<meta name="author" content="蓝兔" />
+		<meta name="author" content="试客小栈" />
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		      <!--声明文档的兼容模式
 
 指示IE以目前可用的最高模式显示内容-->
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="imagetoolbar" content="false">
+
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<!--META/LINK相关：
@@ -67,13 +69,13 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 
 			<div id="tabbar-home" class="mui-control-content mui-active" >
 
-				<div id="slider" class="mui-slider" style="	height: 146px;">
+				<div id="slider" class="mui-slider" >
 					<div class="mui-slider-group mui-slider-loop">
 						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 						<div :class="banner.activeId==1?'mui-slider-item mui-slider-item-duplicate':
 							'mui-slider-item '" v-for="banner in bannerList">
 							<a :href="banner.link" :data-guid="banner.guid" @tap="open_bannerdetail(banner)">
-								<img v-lazy="banner.cover" style="height: 147px; width: 100%;">
+								<img v-lazy="banner.cover" style="height: 78%; width: 100%;">
 							</a>
 						</div>
 
@@ -96,9 +98,9 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 					</div>
 				</div>
 				<!--列表信息流开始-->
-				<div id="list">
-					<div class="mui-scroll" style="margin-bottom:80px;">
-						<ul class="mui-table-view list-card">
+				<div id="list" >
+					
+						<ul class="mui-table-view list-card" >
 							<li class="mui-table-view-cell mui-media" v-for="shopkey in shopkeyList">
 								<a :href="shopkey.link">
 									<img class="mui-media-object mui-pull-left" v-lazy="shopkey.cover" >
@@ -113,12 +115,12 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 								</a>
 							</li>
 						</ul>
-					</div>
+					
 				</div>
 
 				<!--列表信息流 结束-->
 				<div class="sk_float_content">
-					<a href="alipay_red_packet.html">
+					<a href="page/alipay_red_packet.html">
 						<img src=" images/icon/lucky_bag.png" />
 					</a>
 				</div>
@@ -156,35 +158,57 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 									bannerList: [{
 											"cover": " images/shike_tipd.jpg",
 											"activeId": 1,
-											"link": "course_of_study.html"
+											"link": "page/course_of_study.html"
 										},
-
+{
+											"cover": " images/tm_shop_cover.jpg",
+											"activeId": 0,
+											"link": "https://m.tb.cn/h.eXvS5lx?scm=20140618.1.01010001.s100c6"
+										},
 										{
 											"cover": " images/alipay_new_person_invita.jpg",
 											"activeId": 0,
 											"link": "http://uee.me/aUg4n"
 										},
-
+{
+											"cover": " images/jhs_sale_cover.jpg",
+											"activeId": 0,
+											"link": "https://m.tb.cn/h.eXPHobU?scm=20140618.1.01010001.s100c6"
+										},
 										{
 											"cover": " images/tb_invite.png",
 											"activeId": 0,
 											"link": "https://m.tb.cn/A.WCCFa1"
 										},
+											{
+											"cover": " images/mm_sale_cover.jpg",
+											"activeId": 0,
+											"link": "https://m.tb.cn/h.eXlEHLk?scm=20140618.1.01010001.s100c6"
+										},
 										{
 											"cover": " images/shike_tipd.jpg",
 											"activeId": 0,
-											"link": "course_of_study.html"
+											"link": "page/course_of_study.html"
 										},
 									
 										{
-											"cover": " images/alipay_new_person_invita.jpg",
+											"cover": " images/tm_shop_cover.jpg",
 											"activeId": 1,
-											"link": "http://uee.me/aUg4n"
+											"link": "https://m.tb.cn/h.eXvS5lx?scm=20140618.1.01010001.s100c6"
 										}
 
 									],
 									bannerIndicators: [{
 											"activeId": 1
+										},
+										{
+											"activeId": 0
+										},
+										{
+											"activeId": 0
+										},
+										{
+											"activeId": 0
 										},
 										{
 											"activeId": 0
@@ -284,35 +308,57 @@ black-translucent ：状态栏背景是半透明。 如果设置为 default 或 
 									"bannerList": [{
 											"cover": " images/shike_tipd.jpg",
 											"activeId": 1,
-											"link": "http://uee.me/aUg4n"
+											"link": "page/course_of_study.html"
 										},
-
+{
+											"cover": " images/tm_shop_cover.jpg",
+											"activeId": 0,
+											"link": "https://m.tb.cn/h.eXvS5lx?scm=20140618.1.01010001.s100c6"
+										},
 										{
 											"cover": " images/alipay_new_person_invita.jpg",
 											"activeId": 0,
 											"link": "http://uee.me/aUg4n"
 										},
-
+{
+											"cover": " images/jhs_sale_cover.jpg",
+											"activeId": 0,
+											"link": "https://m.tb.cn/h.eXPHobU?scm=20140618.1.01010001.s100c6"
+										},
 										{
 											"cover": " images/tb_invite.png",
 											"activeId": 0,
 											"link": "https://m.tb.cn/A.WCCFa1"
 										},
 										{
+											"cover": " images/mm_sale_cover.jpg",
+											"activeId": 0,
+											"link": "https://m.tb.cn/h.eXlEHLk?scm=20140618.1.01010001.s100c6"
+										},
+										{
 											"cover": " images/shike_tipd.jpg",
 											"activeId": 0,
-											"link": "http://uee.me/aUg4n"
+											"link": "page/course_of_study.html"
 										},
 									
-										{
-											"cover": " images/alipay_new_person_invita.jpg",
+									{
+											"cover": " images/tm_shop_cover.jpg",
 											"activeId": 1,
-											"link": "http://uee.me/aUg4n"
+											"link": "https://m.tb.cn/h.eXvS5lx?scm=20140618.1.01010001.s100c6"
 										}
 
 									],
 									"bannerIndicators": [{
 											"activeId": 1
+										},
+										{
+											"activeId": 0
+										},
+										{
+											"activeId": 0
+										},
+										{
+											"activeId": 0
 										},
 										{
 											"activeId": 0
