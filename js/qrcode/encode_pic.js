@@ -11,7 +11,7 @@ function makeCode(url) {
 	}
 
 onload=function (){
-	    var url = 'https://bluerabbit.top/shopkey/page/shopkey.html';
+	    var url = 'https://bluerabbit.top/shopkey/';
 		makeCode(url);
 		
 
